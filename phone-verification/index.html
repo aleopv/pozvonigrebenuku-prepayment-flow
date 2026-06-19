@@ -1,0 +1,237 @@
+<!doctype html>
+<html lang="ru">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="theme-color" content="#080806">
+  <title>Подтверждение номера — Позвони Гребенюку</title>
+  <meta name="description" content="Привяжи и подтверди номер телефона перед оформлением подписки.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Golos+Text:wght@400;600;700;800;900&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="./styles.css">
+  <script src="./assets/vendor/libphonenumber-max.js"></script>
+  <script src="./config.js"></script>
+  <script src="./app.js" defer></script>
+</head>
+<body>
+  <div class="page-noise" aria-hidden="true"></div>
+
+  <main class="verification-page">
+    <header class="site-header">
+      <a class="brand" href="#" data-bot-back aria-label="Вернуться в Telegram-бот">
+        <img src="./assets/logo-pg.png" alt="Позвони Гребенюку">
+      </a>
+
+      <div class="human-note">
+        <span aria-hidden="true">ϟ</span>
+        <p>Никаких ботов.<br>Только живой разговор<br>с Михаилом Гребенюком.</p>
+      </div>
+    </header>
+
+    <div class="stepper" aria-label="Этап подтверждения номера">
+      <span class="stepper__item is-current" data-step-indicator="phone">1</span>
+      <i></i>
+      <span class="stepper__item" data-step-indicator="review">2</span>
+      <i></i>
+      <span class="stepper__item" data-step-indicator="code">3</span>
+      <i></i>
+      <span class="stepper__item" data-step-indicator="success">4</span>
+    </div>
+
+    <section class="flow" aria-live="polite">
+      <article class="screen is-active" data-screen="phone">
+        <div class="screen-heading">
+          <span class="bolt bolt--left" aria-hidden="true">ϟ</span>
+          <div>
+            <p class="eyebrow">Шаг 1 из 4</p>
+            <h1><em>Подтверди номер</em><strong>для доступа</strong></h1>
+            <p>Введи, пожалуйста, номер телефона, который будет привязан к подписке и с которого ты будешь звонить Михаилу.</p>
+            <b>Номер вводится в международном формате.</b>
+          </div>
+          <span class="bolt bolt--right" aria-hidden="true">ϟ</span>
+        </div>
+
+        <form id="phone-form" autocomplete="off" novalidate>
+          <div class="paper-card input-card">
+            <div class="phone-medallion" aria-hidden="true">☎</div>
+            <label for="phone-input">Номер телефона</label>
+            <input
+              id="phone-input"
+              name="phone"
+              type="tel"
+              inputmode="tel"
+              autocomplete="off"
+              autocapitalize="off"
+              spellcheck="false"
+              enterkeyhint="next"
+              maxlength="24"
+              value="+"
+              placeholder="+"
+              aria-describedby="phone-help phone-error"
+            >
+            <div class="examples" id="phone-help">
+              <span>Примеры:</span>
+              <button type="button" data-phone-example="+79991234567">+79991234567</button>
+              <button type="button" data-phone-example="+4915112345678">+4915112345678</button>
+            </div>
+            <p class="field-error" id="phone-error" role="alert"></p>
+          </div>
+
+          <div class="screen-actions screen-actions--two">
+            <button class="action action--primary" type="submit">
+              <span aria-hidden="true">⚡</span>Продолжить
+            </button>
+            <button class="action action--secondary" type="button" data-bot-back>
+              <span aria-hidden="true">←</span>Назад
+            </button>
+          </div>
+        </form>
+
+        <p class="screen-note"><span>i</span>Этот номер необходим, чтобы корректно предоставить тебе доступ к сервису и привязать разговоры к твоей подписке.</p>
+      </article>
+
+      <article class="screen" data-screen="review">
+        <div class="screen-heading">
+          <span class="bolt bolt--left" aria-hidden="true">ϟ</span>
+          <div>
+            <p class="eyebrow">Шаг 2 из 4</p>
+            <h1><em>Проверь</em> <strong>номер</strong></h1>
+            <p>Мы используем подтверждение номера, чтобы убедиться, что это действительно ты. Это займёт пару секунд.</p>
+            <b>Безопасно, просто и конфиденциально.</b>
+          </div>
+          <span class="bolt bolt--right" aria-hidden="true">ϟ</span>
+        </div>
+
+        <div class="paper-card review-card">
+          <div class="phone-medallion" aria-hidden="true">☎</div>
+          <div>
+            <p class="card-label">Твой номер телефона</p>
+            <p class="phone-preview" data-phone-output>+7 999 123-45-67</p>
+            <p class="card-explanation"><span>i</span>Мы отправим SMS с кодом подтверждения или позвоним на этот номер.</p>
+          </div>
+        </div>
+
+        <div class="screen-actions screen-actions--two">
+          <button class="action action--primary" type="button" data-send-code>
+            <span aria-hidden="true">⚡</span>Всё верно
+          </button>
+          <button class="action action--secondary" type="button" data-edit-phone>
+            <span aria-hidden="true">✎</span>Изменить номер
+          </button>
+        </div>
+
+        <p class="screen-note"><span>i</span>Если номер указан неверно, нажми «Изменить номер», чтобы исправить его.</p>
+      </article>
+
+      <article class="screen" data-screen="code">
+        <div class="screen-heading">
+          <span class="bolt bolt--left" aria-hidden="true">ϟ</span>
+          <div>
+            <p class="eyebrow">Шаг 3 из 4</p>
+            <h1><em>Введи код</em><strong>подтверждения</strong></h1>
+            <p>Мы отправили код в SMS на номер <span data-phone-output></span>.</p>
+            <p>Если был звонок — введи последние 4 цифры номера, с которого звонили.</p>
+          </div>
+          <span class="bolt bolt--right" aria-hidden="true">ϟ</span>
+        </div>
+
+        <form id="code-form" novalidate>
+          <div class="paper-card code-card">
+            <label for="code-input">Код подтверждения</label>
+            <input
+              id="code-input"
+              name="code"
+              type="text"
+              inputmode="numeric"
+              autocomplete="one-time-code"
+              maxlength="4"
+              placeholder="_  _  _  _"
+              aria-describedby="code-help code-error"
+            >
+            <p class="card-explanation" id="code-help"><span>i</span>Введи код из 4 цифр — из сообщения или последние цифры номера входящего звонка.</p>
+            <p class="field-error" id="code-error" role="alert"></p>
+          </div>
+
+          <div class="screen-actions screen-actions--three">
+            <button class="action action--primary" type="submit">
+              <span aria-hidden="true">⚡</span>Продолжить
+            </button>
+            <button class="action action--secondary" type="button" data-resend-code>
+              <span aria-hidden="true">↻</span><span data-resend-label>Отправить код заново</span>
+            </button>
+            <button class="action action--secondary" type="button" data-edit-phone>
+              <span aria-hidden="true">✎</span>Изменить номер
+            </button>
+          </div>
+        </form>
+
+        <div class="code-support">
+          <p class="screen-note"><span>i</span>Если код не пришёл в течение 1–2 минут, запроси его повторно. SMS может задерживаться — это нормально.</p>
+          <a class="support-link" href="#" data-support-link>Написать в службу заботы</a>
+        </div>
+      </article>
+
+      <article class="screen" data-screen="success">
+        <div class="screen-heading">
+          <span class="bolt bolt--left" aria-hidden="true">ϟ</span>
+          <div>
+            <p class="eyebrow">Шаг 4 из 4</p>
+            <h1><em>Номер</em><strong>подтверждён</strong></h1>
+            <p>Отлично! Твой номер телефона успешно привязан к подписке на разговоры с Михаилом Гребенюком.</p>
+            <b>Теперь ты можешь перейти к следующему шагу.</b>
+          </div>
+          <span class="bolt bolt--right" aria-hidden="true">ϟ</span>
+        </div>
+
+        <div class="paper-card success-card">
+          <div class="success-seal" aria-hidden="true">✓</div>
+          <div>
+            <p class="card-label">Номер успешно привязан</p>
+            <p class="confirmed-phone"><span aria-hidden="true">☎</span><strong data-phone-output>+7 999 123-45-67</strong></p>
+            <p>Этот номер теперь связан с твоей подпиской. Ты будешь получать звонки и важные уведомления на него.</p>
+          </div>
+        </div>
+
+        <div class="screen-actions screen-actions--two">
+          <a class="action action--primary" href="../consent-landing/index.html" data-continue-to-consent>
+            <span aria-hidden="true">⚡</span>Продолжить
+          </a>
+          <button class="action action--secondary" type="button" data-edit-phone>
+            <span aria-hidden="true">✎</span>Изменить номер
+          </button>
+        </div>
+
+        <p class="screen-note"><span>i</span>После продолжения ты перейдёшь к документам и обязательным согласиям перед оплатой подписки.</p>
+      </article>
+
+    </section>
+
+    <footer class="trust-footer">
+      <p><span aria-hidden="true">♙</span>Твои данные защищены и<br>не передаются третьим лицам</p>
+      <p><span aria-hidden="true">☆</span>Звони напрямую Михаилу<br>Гребенюку без посредников</p>
+      <p><span aria-hidden="true">✓</span>Доступ 24/7 в рамках<br>твоей подписки</p>
+    </footer>
+  </main>
+
+  <dialog class="error-dialog" id="error-dialog" aria-labelledby="error-title">
+    <div class="error-dialog__paper">
+      <button class="error-dialog__close" type="button" data-error-close aria-label="Закрыть">×</button>
+      <span class="error-dialog__icon" aria-hidden="true">!</span>
+      <p class="eyebrow">Не получилось продолжить</p>
+      <h2 id="error-title" data-error-title>Ошибка</h2>
+      <div class="error-dialog__message" data-error-message></div>
+      <div class="error-dialog__examples" data-error-examples hidden>
+        <b>Примеры:</b>
+        <span>+79991234567</span>
+        <span>+4915112345678</span>
+      </div>
+      <div class="error-dialog__actions">
+        <button class="action action--primary" type="button" data-error-primary>Попробуй снова</button>
+        <button class="action action--secondary" type="button" data-error-secondary hidden>Изменить номер</button>
+        <a class="action action--support" href="#" data-support-link>Написать в службу заботы</a>
+      </div>
+    </div>
+  </dialog>
+</body>
+</html>

@@ -1,0 +1,210 @@
+<!doctype html>
+<html lang="ru">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="theme-color" content="#080806">
+  <title>Документы и согласия — Позвони Гребенюку</title>
+  <meta name="description" content="Ознакомься с документами и подтверди согласия перед оплатой подписки.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Golos+Text:wght@400;600;700;800;900&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="./styles.css">
+  <script src="https://telegram.org/js/telegram-web-app.js"></script>
+  <script src="./config.js"></script>
+  <script src="./app.js" defer></script>
+</head>
+<body>
+  <div class="page-noise" aria-hidden="true"></div>
+
+  <main class="consent-page">
+    <aside class="intro" aria-labelledby="page-title">
+      <a class="brand" href="#" data-back-link aria-label="Вернуться назад">
+        <img src="./assets/logo-pg.png" alt="Позвони Гребенюку">
+      </a>
+
+      <div class="intro__content">
+        <p class="kicker">Шаг перед оплатой</p>
+        <h1 id="page-title"><span>Документы</span> и согласия</h1>
+        <div class="divider" aria-hidden="true"><i></i><b>★</b><i></i></div>
+        <p class="intro__lead">Ознакомься, пожалуйста, с документами и отметь необходимые согласия.</p>
+      </div>
+
+      <div class="bolt-seal" aria-hidden="true">
+        <span>ϟ</span>
+      </div>
+    </aside>
+
+    <section class="form-stage">
+      <div class="progress" aria-label="Этап оформления">
+        <span>Перед оплатой</span>
+        <div class="progress__line"><i></i></div>
+        <div class="progress__icon" aria-hidden="true">◖</div>
+      </div>
+
+      <form class="consent-form" id="consent-form" novalidate>
+        <div class="paper-card">
+          <section class="consent-group" aria-labelledby="required-title">
+            <header class="group-title">
+              <span class="group-title__icon" aria-hidden="true">ϟ</span>
+              <h2 id="required-title">Обязательные для продолжения</h2>
+              <i></i>
+              <b aria-hidden="true">★</b>
+            </header>
+
+            <div class="checks" id="required-checks">
+              <label class="check-row">
+                <input type="checkbox" name="offer" required>
+                <span class="checkbox" aria-hidden="true"></span>
+                <span>Я ознакомился с офертой, политикой конфиденциальности и условиями подписки.</span>
+              </label>
+
+              <label class="check-row">
+                <input type="checkbox" name="personal_data" required>
+                <span class="checkbox" aria-hidden="true"></span>
+                <span>Я согласен на обработку персональных данных для оформления подписки, доступа к сервису и связи со мной.</span>
+              </label>
+
+              <label class="check-row">
+                <input type="checkbox" name="recording" required>
+                <span class="checkbox" aria-hidden="true"></span>
+                <span>Я согласен на запись разговора и обработку голоса для подготовки разбора и отчёта.</span>
+              </label>
+
+              <label class="check-row">
+                <input type="checkbox" name="ai_processing" required>
+                <span class="checkbox" aria-hidden="true"></span>
+                <span>Я согласен на обработку разговора с помощью искусственного интеллекта для подготовки отчёта.</span>
+              </label>
+
+              <label class="check-row">
+                <input type="checkbox" name="recurring_payment" required>
+                <span class="checkbox" aria-hidden="true"></span>
+                <span>Я понимаю, что подписка продлевается автоматически каждые 30 дней. Стоимость — <strong data-price>10&nbsp;000 ₽</strong>.</span>
+              </label>
+            </div>
+
+            <button class="select-required" type="button" id="select-required">
+              <span aria-hidden="true">✓</span>
+              Выбрать все обязательные
+            </button>
+          </section>
+
+          <section class="consent-group consent-group--optional" aria-labelledby="optional-title">
+            <header class="group-title">
+              <span class="group-title__icon" aria-hidden="true">+</span>
+              <h2 id="optional-title">Необязательно</h2>
+              <i></i>
+              <b aria-hidden="true">★</b>
+            </header>
+
+            <div class="checks">
+              <label class="check-row">
+                <input type="checkbox" name="marketing">
+                <span class="checkbox" aria-hidden="true"></span>
+                <span>Я согласен получать рекламные и информационные сообщения.</span>
+              </label>
+            </div>
+          </section>
+
+          <div class="notice" id="form-notice" role="status" aria-live="polite">
+            <span aria-hidden="true">i</span>
+            <p>Пункты из блока «Обязательные для продолжения» нужны для перехода к оплате.</p>
+          </div>
+        </div>
+
+        <div class="actions">
+          <button class="primary-button" type="submit" id="continue-button" disabled>
+            <span>Продолжить</span>
+            <b aria-hidden="true">ϟ</b>
+          </button>
+
+          <button class="documents-button" type="button" id="documents-button">
+            <span class="document-icon" aria-hidden="true"></span>
+            <span>Документы</span>
+          </button>
+
+          <button class="back-button" type="button" data-back-button>
+            <span aria-hidden="true">←</span>
+            Назад
+          </button>
+        </div>
+      </form>
+    </section>
+  </main>
+
+  <dialog class="documents-dialog" id="documents-dialog" aria-labelledby="documents-title">
+    <div class="dialog-paper">
+      <button class="dialog-close" type="button" data-close-dialog aria-label="Закрыть">×</button>
+      <p class="kicker">Перед оплатой</p>
+      <h2 id="documents-title">Документы сервиса</h2>
+      <p class="dialog-intro">Перед продолжением ознакомься, пожалуйста, с документами:</p>
+
+      <nav class="document-list" aria-label="Юридические документы">
+        <a href="#" data-document-link="offer" aria-disabled="true">
+          <span>01</span>
+          <span class="document-copy">
+            <b>Публичная оферта</b>
+            <small>Условия подключения подписки, оплаты, автосписаний и использования сервиса.</small>
+          </span>
+          <i>↗</i>
+        </a>
+        <a href="#" data-document-link="privacy" aria-disabled="true">
+          <span>02</span>
+          <span class="document-copy">
+            <b>Политика конфиденциальности</b>
+            <small>Как мы храним и обрабатываем твои данные.</small>
+          </span>
+          <i>↗</i>
+        </a>
+        <a href="#" data-document-link="personalData" aria-disabled="true">
+          <span>03</span>
+          <span class="document-copy">
+            <b>Согласие на обработку персональных данных</b>
+            <small>Разрешение на обработку данных, которые нужны для работы сервиса.</small>
+          </span>
+          <i>↗</i>
+        </a>
+        <a href="#" data-document-link="aiConversation" aria-disabled="true">
+          <span>04</span>
+          <span class="document-copy">
+            <b>Согласие на обработку разговора с помощью ИИ</b>
+            <small>Нужно, чтобы мы могли обработать звонок и подготовить отчёт.</small>
+          </span>
+          <i>↗</i>
+        </a>
+        <a href="#" data-document-link="subscription" aria-disabled="true">
+          <span>05</span>
+          <span class="document-copy">
+            <b>Условия подписки</b>
+            <small>Стоимость, срок подписки, порядок ежемесячных списаний и завершение доступа.</small>
+          </span>
+          <i>↗</i>
+        </a>
+      </nav>
+
+      <p class="dialog-note">После ознакомления нажми «Продолжить», чтобы вернуться к подтверждению согласий.</p>
+      <button class="dialog-continue" type="button" data-close-dialog>Продолжить</button>
+    </div>
+  </dialog>
+
+  <dialog class="back-dialog" id="back-dialog" aria-labelledby="back-dialog-title">
+    <div class="back-dialog__paper">
+      <button class="dialog-close" type="button" data-close-back-dialog aria-label="Закрыть">×</button>
+      <p class="kicker">Перед выходом</p>
+      <h2 id="back-dialog-title">Хочешь изменить номер?</h2>
+      <p class="back-dialog__text">
+        Твой номер уже подтверждён. Если хочешь указать другой, мы вернём тебя к первому шагу подтверждения.
+      </p>
+      <div class="back-dialog__actions">
+        <a class="back-choice back-choice--primary" href="../phone-verification/index.html" data-change-phone>
+          Изменить номер
+        </a>
+        <a class="back-choice back-choice--secondary" href="https://t.me/grebenyuk_call_bot?start=start" data-return-bot>
+          Вернуться в Telegram-бот
+        </a>
+      </div>
+    </div>
+  </dialog>
+</body>
+</html>

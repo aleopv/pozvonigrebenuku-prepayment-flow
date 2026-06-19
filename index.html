@@ -1,0 +1,21 @@
+<!doctype html>
+<html lang="ru">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#080806">
+  <title>Подключение подписки — Позвони Гребенюку</title>
+  <meta name="description" content="Подтверждение номера и принятие согласий перед оплатой подписки.">
+  <script>
+    const nextUrl = new URL("./phone-verification/", window.location.href);
+    nextUrl.search = window.location.search;
+    window.location.replace(nextUrl.href);
+  </script>
+</head>
+<body>
+  <p>
+    Переходим к подтверждению номера…
+    <a href="./phone-verification/">Продолжить</a>
+  </p>
+</body>
+</html>
