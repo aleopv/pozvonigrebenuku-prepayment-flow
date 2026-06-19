@@ -44,10 +44,10 @@
 
       <form class="consent-form" id="consent-form" novalidate>
         <div class="paper-card">
-          <section class="consent-group" aria-labelledby="required-title">
+          <section class="consent-group" aria-labelledby="consents-title">
             <header class="group-title">
               <span class="group-title__icon" aria-hidden="true">ϟ</span>
-              <h2 id="required-title">Обязательные для продолжения</h2>
+              <h2 id="consents-title">Согласия перед оплатой</h2>
               <i></i>
               <b aria-hidden="true">★</b>
             </header>
@@ -82,34 +82,23 @@
                 <span class="checkbox" aria-hidden="true"></span>
                 <span>Я понимаю, что подписка продлевается автоматически каждые 30 дней. Стоимость — <strong data-price>10&nbsp;000 ₽</strong>.</span>
               </label>
-            </div>
 
-            <button class="select-required" type="button" id="select-required">
-              <span aria-hidden="true">✓</span>
-              Выбрать все обязательные
-            </button>
-          </section>
-
-          <section class="consent-group consent-group--optional" aria-labelledby="optional-title">
-            <header class="group-title">
-              <span class="group-title__icon" aria-hidden="true">+</span>
-              <h2 id="optional-title">Необязательно</h2>
-              <i></i>
-              <b aria-hidden="true">★</b>
-            </header>
-
-            <div class="checks">
               <label class="check-row">
                 <input type="checkbox" name="marketing">
                 <span class="checkbox" aria-hidden="true"></span>
                 <span>Я согласен получать рекламные и информационные сообщения.</span>
               </label>
             </div>
+
+            <button class="select-required" type="button" id="select-required">
+              <span aria-hidden="true">✓</span>
+              Выбрать нужные отметки
+            </button>
           </section>
 
           <div class="notice" id="form-notice" role="status" aria-live="polite">
             <span aria-hidden="true">i</span>
-            <p>Пункты из блока «Обязательные для продолжения» нужны для перехода к оплате.</p>
+            <p>Для перехода к оплате нужны первые пять отметок. Рассылку можно подключить по желанию.</p>
           </div>
         </div>
 

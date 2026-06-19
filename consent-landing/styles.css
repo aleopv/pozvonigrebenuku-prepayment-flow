@@ -433,15 +433,7 @@ input:focus-visible + .checkbox {
   color: var(--red);
 }
 
-.consent-group--optional {
-  margin-top: 15px;
-}
-
-.consent-group--optional .group-title b {
-  color: var(--ink);
-}
-
-.consent-group--optional .check-row:last-child {
+.checks .check-row:last-child {
   border-bottom: 0;
 }
 

@@ -24,7 +24,7 @@
     recoveryTimer: null
   };
 
-  const defaultNotice = "Пункты из блока «Обязательные для продолжения» нужны для перехода к оплате.";
+  const defaultNotice = "Для перехода к оплате нужны первые пять отметок. Рассылку можно подключить по желанию.";
 
   const safeReturnUrl = (value) => {
     if (!value) return "";
@@ -61,8 +61,8 @@
       ? "Сохраняем"
       : "Продолжить";
     selectRequiredButton.innerHTML = isComplete
-      ? "<span aria-hidden=\"true\">↺</span> Снять обязательные отметки"
-      : "<span aria-hidden=\"true\">✓</span> Выбрать все обязательные";
+      ? "<span aria-hidden=\"true\">↺</span> Снять нужные отметки"
+      : "<span aria-hidden=\"true\">✓</span> Выбрать нужные отметки";
 
     if (notice?.classList.contains("is-error") && isComplete) {
       setNotice(defaultNotice);
